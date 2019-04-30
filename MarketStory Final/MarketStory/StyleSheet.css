@@ -1,0 +1,36 @@
+﻿body {
+}
+
+/*AutoComplete flyout */
+.autocomplete_completionListElement
+{
+    margin-top : 3px!important ;
+    margin-left : -39.5px!important ;
+    color : windowtext ;
+    border : buttonshadow ;
+    border-width : 0px ;
+    border-style : solid ;
+    cursor : 'default' ;
+    overflow : auto ;
+    height : 100px ;
+    font-family : Calibri ;
+    font-size : medium ;
+    text-align : start ;
+    list-style-type : none ;
+    }
+
+/* AutoComplete highlighted item */
+.autocomplete_highlightedListItem
+   {
+    background-color : lightgrey ;
+    color : black ;
+    padding : 1px ;
+    }
+
+/* AutoComplete item */
+.autocomplete_listItem
+    {
+    background-color : window ;
+    color : windowtext ;
+    padding : 1px ;
+   }

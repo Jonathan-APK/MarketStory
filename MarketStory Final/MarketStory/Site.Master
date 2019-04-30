@@ -1,0 +1,221 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="MarketStory.SiteMaster" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style>
+        ul#nav
+        {
+            list-style-type: none;
+        }
+
+            ul#nav > li
+            {
+                float: left;
+                margin-right: 0.312em; /* 5/16 */
+                position: relative;
+            }
+
+            ul#nav li:first-child
+            {
+                margin-left: 0;
+            }
+
+            ul#nav li:hover ul
+            {
+                left: -30px; /* On hover, we make the submenu visible again */
+            }
+            /* Persistent hover state, exactly the same style as the inner anchor on hover (.dark:hover) */
+            ul#nav li:hover a
+            {
+                background-color: #5d6677;
+                color: white;
+            }
+
+            ul#nav li ul
+            {
+                list-style-type: none;
+                position: absolute;
+                z-index: 999;
+                margin-top: 25px;
+                left: -9999px;
+            }
+    </style>
+    <link href="templatemo_style.css" rel="stylesheet" type="text/css" />
+    <link href="css/jquery.ennui.contentslider.css" rel="stylesheet" type="text/css" media="screen,projection" />
+    <link href="StyleSheet.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        function disableBackButton() {
+            window.history.forward();
+        }
+        setTimeout("disableBackButton()", 0);
+    </script>
+</head>
+<body>
+    <form id="Form1" runat="server">
+        <div id="templatemo_header_wrapper">
+
+            <div id="templatemo_header">
+
+                <div id="site_title">
+                    <asp:Image ID="ImageLogo" runat="server" Height="68px" Width="180px"
+                        ImageUrl="~/Images/SiteMaster/MSLogo.png" />
+
+                </div>
+
+
+                <div align="right">
+                    <br />
+                    <br />
+                    <ajaxToolkit:ToolkitScriptManager ID="ScriptManager1" runat="server">
+                    </ajaxToolkit:ToolkitScriptManager>
+
+                    <asp:RequiredFieldValidator ID="TextBoxSearchValidator" runat="server" ErrorMessage="Please enter a query in the search box!" ControlToValidate="TextBoxSearch" BorderColor="#cc66ff" BorderWidth="2" ForeColor="Black" BackColor="#ff66ff" Font-Names="Calibri" Font-Bold="true" ValidationGroup="Search"></asp:RequiredFieldValidator>
+                    <asp:TextBox ID="TextBoxSearch" runat="server" placeholder="Search..." title="searchfield"></asp:TextBox>
+                    <asp:ImageButton ID="ImageButton" runat="server" ImageUrl="~/Images/SiteMaster/searchGlass.png" align="center" Height="23px" Width="23px" ValidationGroup="Search" OnClick="Button1_Click" />
+                    <br />
+
+
+                    <ajaxToolkit:AnimationExtender ID="OpenAnimation" runat="server" BehaviorID="AnimationBehavior" TargetControlID="TextBoxSearchValidator">
+                        <Animations>
+                <OnClick>
+                   <Sequence>
+                        <Parallel AnimationTarget="TextBoxSearchValidator" Duration=".5" Fps="500">
+                           <FadeOut Duration=".1" Fps="100" />
+                        </Parallel>   
+                    </Sequence>
+                </OnClick>
+                        </Animations>
+                    </ajaxToolkit:AnimationExtender>
+
+                    <ajaxToolkit:AutoCompleteExtender ID="autoComplete1" runat="server"
+                        EnableCaching="false"
+                        BehaviorID="AutoCompleteEx"
+                        MinimumPrefixLength="1"
+                        UseContextKey="True"
+                        TargetControlID="TextBoxSearch"
+                        ServicePath="AutoComplete.asmx"
+                        ServiceMethod="GetCompletionList"
+                        CompletionInterval="10"
+                        CompletionSetCount="5"
+                        CompletionListCssClass="autocomplete_completionListElement"
+                        CompletionListItemCssClass="autocomplete_listItem"
+                        CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem"
+                        DelimiterCharacters=";, :"
+                        ShowOnlyCurrentWordInCompletionListItem="false">
+                        <Animations>
+          <OnShow>
+          <Sequence>
+          <%-- Make the completion list transparent and then show it --%>
+          <OpacityAction Opacity="0" />
+          <HideAction Visible="true" />
+
+          <%--Cache the original size of the completion list the first time
+            the animation is played and then set it to zero --%>
+          <ScriptAction Script="        var behavior = $find('AutoCompleteEx');
+                                        if (!behavior._height) {
+                                            var target = behavior.get_completionList();
+                                            behavior._height = target.offsetHeight - 2;
+                                            target.style.height = '0px';
+                                        }" />
+          <%-- Expand from 0px to the appropriate size while fading in --%>
+          <Parallel Duration=".4">
+          <FadeIn />
+          <Length PropertyKey="height" StartValue="0" 
+	        EndValueScript="$find('AutoCompleteEx')._height" />
+          </Parallel>
+          </Sequence>
+          </OnShow>
+          <OnHide>
+          <%-- Collapse down to 0px and fade out --%>
+          <Parallel Duration=".4">
+          <FadeOut />
+          <Length PropertyKey="height" StartValueScript=
+	        "$find('AutoCompleteEx')._height" EndValue="0" />
+          </Parallel>
+          </OnHide>
+                        </Animations>
+                    </ajaxToolkit:AutoCompleteExtender>
+                </div>
+
+
+                <div align="right">
+                    <table align="right">
+                        <tr>
+                            <td align>
+                                <asp:RadioButtonList ID="searchOption" runat="server" RepeatDirection="Horizontal" Font-Names="Calibri">
+                                    <asp:ListItem style="color: white; font-style: normal" Text="Users" Selected="True" />
+                                    <asp:ListItem style="color: white; font-style: normal" Text="Products" />
+                                </asp:RadioButtonList>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <br style="line-height: 46px;" />
+                    <asp:Label ID="LabelUsername" runat="server"></asp:Label>
+                    &nbsp;&nbsp;<asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/ProfilePosts.aspx">Profile</asp:HyperLink>
+                    &nbsp;&nbsp;<asp:Button ID="ButtonLogout" runat="server" OnClick="ButtonLogout_Click" Text="Logout" OnClientClick="disableBackButton()" />
+                </div>
+
+                <div class="cleaner"></div>
+            </div>
+            <!-- end of header -->
+
+            <div id="templatemo_menu">
+                <ul id="nav">
+                    <li><a href="newsfeed.aspx">Home</a></li>
+                    <li class="v-sep"><a href="Panaroma.aspx">Market</a>
+                        <ul>
+                            <li><a href="Orders.aspx">My Orders</a></li>
+                            <li><a href="AccountInformation.aspx">Top-up MSCash</a></li>
+                        </ul>
+                    </li>
+                    <li class="v-sep"><a href="RedemptionStore.aspx">Redemption</a>
+                        <ul>
+                            <li><a href="RedemptionStore.aspx">Store</a></li>
+                            <li><a href="RedemptionHist.aspx">History</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- end of templatemo_menu -->
+        </div>
+        <!-- end of header_wrapper -->
+
+
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+        <asp:ContentPlaceHolder ID="FeaturedContent" runat="server">
+        </asp:ContentPlaceHolder>
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+        <!-- end of templatemo_content -->
+
+
+        <div id="templatemo_footer_wrapper">
+            <div id="templatemo_footer">
+
+                <ul class="footer_menu">
+                    <li><a href="newsfeed.aspx">Home</a></li>
+                    <li><a href="Panaroma.aspx">Market</a></li>
+                    <li class="last_menu"><a href="RedemptionStore.aspx">Redemption</a>
+                    </li>
+                </ul>
+
+                Copyright © 2013 MarketStory 
+
+            </div>
+            <!-- end of footer -->
+
+        </div>
+        <!-- end of footer_wrapper -->
+
+    </form>
+</body>
+</html>

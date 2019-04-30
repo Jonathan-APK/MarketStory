@@ -1,0 +1,17 @@
+c:\users\pokky\documents\visual studio 2010\Projects\MarketStory\MarketStory\bin\MarketStory.dll
+c:\users\pokky\documents\visual studio 2010\Projects\MarketStory\MarketStory\bin\MarketStory.pdb
+c:\users\pokky\documents\visual studio 2010\Projects\MarketStory\MarketStory\obj\Debug\MarketStory.dll
+c:\users\pokky\documents\visual studio 2010\Projects\MarketStory\MarketStory\obj\Debug\MarketStory.pdb
+C:\Users\Pokky\Documents\Visual Studio 2010\Projects\MarketStory\MarketStory\obj\Debug\MarketStory.csprojResolveAssemblyReference.cache
+C:\Users\boonleng\Desktop\MarketStory compiled V1000 FINAL 2010\MarketStory\bin\MarketStory.dll
+C:\Users\boonleng\Desktop\MarketStory compiled V1000 FINAL 2010\MarketStory\bin\MarketStory.pdb
+C:\Users\boonleng\Desktop\MarketStory compiled V1000 FINAL 2010\MarketStory\bin\MSCaptcha.dll
+C:\Users\boonleng\Desktop\MarketStory compiled V1000 FINAL 2010\MarketStory\obj\Debug\MarketStory.dll
+C:\Users\boonleng\Desktop\MarketStory compiled V1000 FINAL 2010\MarketStory\obj\Debug\MarketStory.pdb
+C:\Users\112723X\Desktop\MarketStory compiled V1000 FINAL 2010\MarketStory\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\112723X\Desktop\MarketStory compiled V1000 FINAL 2010\MarketStory\bin\MarketStory.dll
+C:\Users\112723X\Desktop\MarketStory compiled V1000 FINAL 2010\MarketStory\bin\MarketStory.pdb
+C:\Users\112723X\Desktop\MarketStory compiled V1000 FINAL 2010\MarketStory\bin\AjaxControlToolkit.dll
+C:\Users\112723X\Desktop\MarketStory compiled V1000 FINAL 2010\MarketStory\bin\MSCaptcha.dll
+C:\Users\112723X\Desktop\MarketStory compiled V1000 FINAL 2010\MarketStory\obj\Debug\MarketStory.dll
+C:\Users\112723X\Desktop\MarketStory compiled V1000 FINAL 2010\MarketStory\obj\Debug\MarketStory.pdb
